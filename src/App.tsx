@@ -1,7 +1,11 @@
 import { useState } from "react";
 import "./App.css";
 
-import { getEntriesFromMds, getEntryFromLocal } from "./utils/mds";
+import {
+  downloadJsonFile,
+  getEntriesFromMds,
+  getEntryFromLocal,
+} from "./utils/mds";
 import type { AAGUID } from "./utils/types";
 
 function App() {
@@ -25,6 +29,7 @@ function App() {
     const mdsStringify = JSON.stringify(mds.payload, null, 2);
     console.log(`MDS: ${mdsStringify}`);
     setEntriesFromMetadataService(mdsStringify);
+    downloadJsonFile(mdsStringify, "mds.json");
   };
 
   const fetchEntryFromLocal = async (aaguid: AAGUID) => {
